@@ -1,0 +1,140 @@
+<app-breadcrumb [listBreadCrumb]="listBreadCrumb"></app-breadcrumb>
+<div>
+  <!-- card -->
+  <nz-card>
+    <div nz-row>
+      <div class="card-item" nz-col [nzXl]="6" [nzSm]="12" [nzXs]="24">
+        <div>
+          <span class="card-number">1230</span
+          ><span
+            class="card-icon"
+            nz-icon
+            nzType="user"
+            nzTheme="outline"
+          ></span>
+        </div>
+        <p class="card-title">Số lượng khách hàng</p>
+      </div>
+      <div class="card-item" nz-col [nzXl]="6" [nzSm]="12" [nzXs]="24">
+        <div>
+          <span class="card-number">1230</span
+          ><span
+            class="card-icon"
+            nz-icon
+            nzType="team"
+            nzTheme="outline"
+          ></span>
+        </div>
+        <p class="card-title">Số lượng seller</p>
+      </div>
+      <div class="card-item" nz-col [nzXl]="6" [nzSm]="12" [nzXs]="24">
+        <div>
+          <span class="card-number">1230</span
+          ><span
+            class="card-icon"
+            nz-icon
+            nzType="user-add"
+            nzTheme="outline"
+          ></span>
+        </div>
+        <p class="card-title">Số lượng KH cần duyệt</p>
+      </div>
+      <div class="card-item" nz-col [nzXl]="6" [nzSm]="12" [nzXs]="24">
+        <div>
+          <span class="card-number">1230</span
+          ><span
+            class="card-icon"
+            nz-icon
+            nzType="user-switch"
+            nzTheme="outline"
+          ></span>
+        </div>
+        <p class="card-title">Số lượng seller cần duyệt</p>
+      </div>
+    </div>
+  </nz-card>
+
+  <!-- chart  -->
+  <div nz-row>
+    <div nz-col [nzSpan]="12">
+      <nz-card>
+        <div class="chart-title">
+          <p>Số lượng khách hàng mới</p>
+        </div>
+
+        <div class="chart-wrapper card">
+          <canvas
+            baseChart
+            [datasets]="barChartNewCustomerData"
+            [labels]="barChartNewCustomerLabels"
+            [options]="barChartNewCustomerOptions"
+            [plugins]="barChartNewCustomerPlugins"
+            [legend]="barChartNewCustomerLegend"
+            [type]="barChartNewCustomerType"
+          >
+          </canvas>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-card>
+        <div class="chart-title">
+          <p>Số lượng khách hàng lũy kế</p>
+        </div>
+
+        <div class="chart-wrapper card">
+          <canvas
+            baseChart
+            [datasets]="barChartAccumulatedNumberOfCustomersData"
+            [labels]="barChartAccumulatedNumberOfCustomersLabels"
+            [options]="barChartAccumulatedNumberOfCustomersOptions"
+            [plugins]="barChartAccumulatedNumberOfCustomersPlugins"
+            [legend]="barChartAccumulatedNumberOfCustomersLegend"
+            [type]="barChartAccumulatedNumberOfCustomersType"
+          >
+          </canvas>
+        </div>
+      </nz-card>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col [nzSpan]="12">
+      <nz-card>
+        <div class="chart-title">
+          <p>Số lượng seller đang hoạt động</p>
+        </div>
+        <div class="chart-wrapper card">
+          <canvas
+            baseChart
+            [datasets]="lineChartNumberOfSellerData"
+            [labels]="lineChartNumberOfSellerLabels"
+            [options]="lineChartNumberOfSellerOptions"
+            [plugins]="lineChartNumberOfSellerPlugins"
+            [legend]="lineChartNumberOfSellerLegend"
+            [type]="lineChartNumberOfSellerType"
+          >
+          </canvas>
+        </div>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-card>
+        <div class="chart-title">
+          <p>Số lượng khách hàng cần phê duyệt</p>
+        </div>
+        <div class="chart-wrapper card">
+          <canvas
+            baseChart
+            [datasets]="lineChartUnapprovedCustomersData"
+            [labels]="lineChartUnapprovedCustomersLabels"
+            [options]="lineChartUnapprovedCustomersOptions"
+            [plugins]="lineChartUnapprovedCustomersPlugins"
+            [legend]="lineChartUnapprovedCustomersLegend"
+            [type]="lineChartUnapprovedCustomersType"
+          >
+          </canvas>
+        </div>
+      </nz-card>
+    </div>
+  </div>
+</div>

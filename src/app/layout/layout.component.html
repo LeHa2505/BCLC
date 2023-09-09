@@ -1,0 +1,74 @@
+<nz-layout class="layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzTheme="light"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <img
+        src="https://images-platform.99static.com//uvFE6upH3Rp9U3yUg67YP0gswVg=/0x0:500x500/fit-in/500x500/99designs-contests-attachments/86/86496/attachment_86496607"
+        alt="logo"
+      />
+      <div>
+        <h1 class="account-name">Geeks</h1>
+        <h1 class="email">geeks@gmail.com</h1>
+      </div>
+    </div>
+    <ul
+      nz-menu
+      nzTheme="light"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <ng-container *ngFor="let item of menus">
+        <li
+          *ngIf="item.subMenus"
+          nz-submenu
+          [nzTitle]="item.title"
+          [nzIcon]="item.icon"
+        >
+          <ul>
+            <li *ngFor="let sub of item.subMenus" nz-menu-item>
+              <a [routerLink]="sub.url">{{ sub.title }}</a>
+            </li>
+          </ul>
+        </li>
+        <li [routerLink]="item.url" nz-menu-item *ngIf="!item.subMenus">
+          <span nz-icon [nzType]="item.icon"></span>
+          <span>{{ item.title }}</span>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-sider>
+  <nz-layout class="right-layout">
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <span
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></span>
+          <span style="margin: 1em; font-size: 16px"
+            >FaceNet Customer Management</span
+          >
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer
+      style="text-align: center; padding: 0 25px 10px 25px; margin-top: -8px"
+    >
+      ©Copyright <a href="https://facenet.vn/">FaceNet</a>. All Rights Reserved.
+      Designed by <a href="https://facenet.vn/">FaceNet</a>
+    </nz-footer>
+  </nz-layout>
+</nz-layout>
