@@ -1,0 +1,68 @@
+<nz-layout class="layout">
+  <nz-sider class="menu-sidebar" nzTheme="light" nzCollapsible nzWidth="256px" nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo" />
+      <span style="margin: 1em; font-size: 16px"><strong></strong></span>
+    </div>
+    <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ng-container *ngFor="let item of menus">
+        <li *ngIf="item.subMenus" nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
+          <ul>
+            <li *ngFor="let sub of item.subMenus" nz-menu-item>
+              <a [routerLink]="sub.url">{{ sub.title }}</a>
+            </li>
+          </ul>
+        </li>
+        <li [routerLink]="item.url" nz-menu-item *ngIf="!item.subMenus && item.role == role">
+          <span nz-icon [nzType]="item.icon"></span>
+          <span>{{ item.title }}</span>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-sider>
+  <nz-layout class="right-layout">
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'">
+          </span>
+          <span style="margin: 1em; font-size: 16px"><strong></strong></span>
+        </span>
+
+        <div class="header-user">
+          <div class="user-menu">
+            <span style="font-size: 16px" [routerLink]="'user-infomation'">
+              <strong>abc</strong>
+            </span>
+            <span [routerLink]="'login'">
+              <span style="font-size: 16px; color: #007bc3" nz-icon nzType="logout" nzTheme="outline"></span>
+              <span style="margin-left: 0.5em; font-size: 16px">Log out</span>
+            </span>
+          </div>
+          <span class="avartar-img" [routerLink]="'user-infomation'"><strong>anc</strong></span>
+        </div>
+      </div>
+    </nz-header>
+    <nz-breadcrumb>
+      <nz-breadcrumb-item>
+        <a [routerLink]="['/']">Home</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item *ngIf="url==='/'">
+        <a>New Management</a>
+      </nz-breadcrumb-item>
+      <nz-breadcrumb-item *ngFor="let item of breadcrumbs">
+        <a [routerLink]="getMenuUrl(getMenuTitle(item))">{{ getMenuTitle(item) }}</a>
+      </nz-breadcrumb-item>
+    </nz-breadcrumb>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer style="text-align: center; padding: 0 25px 10px 25px; margin-top: -8px; line-height: 20px;">
+      ©Copyright <a href="">Group 8</a>. All Rights Reserved.
+      Designed by <a href="">Group 8</a>
+    </nz-footer>
+  </nz-layout>
+</nz-layout>

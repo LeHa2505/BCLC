@@ -22,6 +22,13 @@ import { FormsModule } from '@angular/forms';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { HeaderComponent } from './header/header.component';
+import { InputTextComponent } from './input-text/input-text.component';
+import { InfoTextComponent } from './info-text/info-text.component';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+
+
 
 @NgModule({
   declarations: [
@@ -32,8 +39,13 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     TextavatarComponent,
     PaginationComponent,
     SelectComponent,
+    HeaderComponent,
+    InputTextComponent,
+    InfoTextComponent,
   ],
   imports: [
+    NzGridModule,
+    NzLayoutModule,
     CommonModule,
     RouterModule,
     IconsProviderModule,
@@ -59,6 +71,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     TextavatarComponent,
     PaginationComponent,
     SelectComponent,
+    HeaderComponent,
+    InfoTextComponent,
+    InputTextComponent
   ],
 })
 export class ComponentsModule {}

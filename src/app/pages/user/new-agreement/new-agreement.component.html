@@ -1,0 +1,147 @@
+<h5 style="text-align: center;">Content</h5>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="formAgreement">
+    <div nz-row [nzGutter]="24">
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzFor="date">
+                <strong>Agreement commencement time (DD--MM--YYYY)</strong>
+            </nz-form-label>
+            <nz-form-control [nzSpan]="8">
+                <p>{{validateForm.get('date').value}}</p>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzFor="agreementID">
+                <strong>Agreement ID</strong>
+            </nz-form-label>
+            <nz-form-control [nzSpan]="8">
+                <p>{{validateForm.get('agreementID').value}}</p>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div nz-row [nzGutter]="24">
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzFor="applicant">
+                <strong>Applicant</strong>
+            </nz-form-label>
+            <nz-form-control [nzSpan]="8">
+                <p>{{validateForm.get('applicant').value}}</p>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzFor="applicantLegalName">
+                <strong>Applicant legal name</strong>
+            </nz-form-label>
+            <nz-form-control [nzSpan]="8">
+                <p>{{validateForm.get('applicantLegalName').value}}</p>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div nz-row [nzGutter]="24">
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzRequired nzFor="beneficiary">
+                <strong>Beneficiary</strong>
+            </nz-form-label>
+            <nz-form-control nzErrorTip="Please input your beneficiary">
+                <input type="text" nz-input formControlName="beneficiary"
+                    placeholder="{{validateForm.get('beneficiary').value}}" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzFor="date">
+                <strong>Beneficiary legal name</strong>
+            </nz-form-label>
+            <nz-form-control>
+                <p>{{validateForm.get('beneficiaryLegalName').value}}</p>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div nz-row [nzGutter]="24">
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzRequired nzFor="issuingBank">
+                <strong>Issuing bank</strong>
+            </nz-form-label>
+            <nz-form-control nzErrorTip="Please input your Issuing bank">
+                <input type="text" nz-input formControlName="issuingBank"
+                    placeholder="{{validateForm.get('issuingBank').value}}" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzFor="issuingBankCode">
+                <strong>Issuing Bank SWIFT/BIC code</strong>
+            </nz-form-label>
+            <nz-form-control>
+                <p>{{validateForm.get('issuingBankCode').value}}</p>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div nz-row [nzGutter]="24">
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzRequired nzFor="commodityName">
+                <strong>Commodity name</strong>
+            </nz-form-label>
+            <nz-form-control nzErrorTip="Please input your commodity name">
+                <input type="text" nz-input formControlName="commodityName"
+                    placeholder="{{validateForm.get('commodityName').value}}" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzRequired nzFor="commodityValue">
+                <strong>Commodity value</strong>
+            </nz-form-label>
+            <nz-form-control nzErrorTip="Please input your commodity value">
+                <input type="text" nz-input formControlName="commodityValue"
+                    placeholder="{{validateForm.get('commodityValue').value}}" />
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div nz-row [nzGutter]="24">
+        <nz-form-item nz-col [nzSpan]="24" class="info">
+            <nz-form-label nzRequired nzFor="paymentMethod">
+                <strong>Payment method</strong>
+            </nz-form-label>
+            <nz-form-control nzErrorTip="Please choose your payment method">
+                <nz-radio-group formControlName="paymentMethod">
+                    <label nz-radio nzValue="Cash">Cash</label>
+                    <label nz-radio nzValue="Digital money">Digital money</label>
+                </nz-radio-group>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+
+    <hr style="margin-top: 40px;">
+
+    <div nz-row [nzGutter]="24">
+        <nz-form-item class="info">
+            <nz-form-label nzFor="additionalInformation">
+                <strong>Additional information <em>(optional)</em></strong>
+            </nz-form-label>
+            <nz-form-control style="margin: 24px 0 24px 0; min-width: 500px;"
+                nzErrorTip="Please choose your payment method">
+                <textarea nz-input formControlName="additionalInformation"
+                    placeholder="Lorem Ipsum is simply dummy text of the printing and "
+                    [nzAutosize]="{ minRows: 3, maxRows: 3 }"></textarea>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div nz-row [nzGutter]="24">
+        <nz-form-item class="info">
+            <nz-form-label nzFor="additionalInformation">
+                <strong>Additional files <em>(optional)</em></strong>
+            </nz-form-label>
+            <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                [nzHeaders]="{ authorization: 'authorization-text' }" (nzChange)="handleChange($event)">
+                <button nz-button>
+                    <span nz-icon nzType="upload"></span>
+                    Click to Upload
+                </button>
+            </nz-upload>
+        </nz-form-item>
+    </div>
+
+    <nz-form-item style="margin: 60px 0 0 0;">
+        <nz-form-control [nzSpan]="8" [nzOffset]="4">
+            <button nz-button nzType="primary">Check</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

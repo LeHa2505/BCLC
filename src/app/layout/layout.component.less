@@ -1,100 +1,34 @@
-:host {
-  display: flex;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+// :host {
+//     text-align: center;
+//   }
 
-.app-layout {
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-}
+//   nz-header,
+//   nz-footer {
+//     color: #fff;
+//   }
 
-nz-header {
-  padding: 0;
-  width: 100%;
-  z-index: 2;
-}
+//   nz-footer {
+//     line-height: 1.5;
+//   }
 
-nz-content {
-  margin: 24px;
-}
+//   nz-sider {
+//     color: #fff;
+//     line-height: 120px;
+//   }
 
-.inner-content {
-  // margin: 24px;
-  padding: 24px;
-  background: #fff;
-  height: 100%;
-}
+  nz-content {
+    min-height: 100vh;
+    line-height: 120px;
+    min-height: 100vh;
 
-.menu-sidebar {
-  position: relative;
-  z-index: 10;
-  min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
-}
+  }
 
-.sidebar-logo {
-  position: relative;
-  height: 100px;
-  padding-left: 24px;
-  overflow: hidden;
-  line-height: 80px;
-  transition: all 0.3s;
-}
+//   nz-layout {
+//     margin-bottom: 48px;
+//   }
 
-.sidebar-logo img {
-  display: inline-block;
-  height: 3em;
-  width: 3em;
-  vertical-align: middle;
-  border-radius: 2em;
-}
-
-.sidebar-logo div {
-  display: inline-block;
-  margin: 0 0 0 20px;
-  vertical-align: middle;
-}
-
-.account-name {
-  height: 1em;
-  font-weight: 600;
-  font-size: 14px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.email {
-  margin-top: 1em;
-  font-size: 14px;
-  font-weight: 100;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.header-trigger {
-  height: 64px;
-  padding: 20px 24px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s, padding 0s;
-}
-
-.trigger:hover {
-  color: #1890ff;
-}
-
-nz-header {
-  padding: 0;
-  width: 100%;
-  z-index: 2;
-}
-
-.app-header {
-  position: relative;
-  height: 64px;
-  padding: 0;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-}
+//   nz-layout nz-layout,
+//   nz-layout:last-child {
+//     margin: 0;
+//   }
 

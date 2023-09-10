@@ -1,21 +1,29 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ShippingOrderListComponent } from './pages/shipping-order-list/shipping-order-list.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { LayoutComponent } from './layout/layout.component';
+import { LayoutUserComponent } from './pages/layout-user/layout-user.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./pages/page.module').then((m) => m.DashboardModule),
+    component: LayoutUserComponent,
+    children: [
+      {
+        path: '', // Đường dẫn trống để đảm bảo đây là trang mặc định của layout chung
+        loadChildren: () =>
+          import('./pages/user/page.module').then((m) => m.PagesModule),
+      },
+      // Thêm các route con cho trang layout chung ở đây
+    ],
   },
   {
-    path: 'shipping-order-list',
+    path: 'auth',
     loadChildren: () =>
-      import('./pages/shipping-order-list/shipping-order-list.module').then((m) => m.ShippingOrderListModule),
-    // component: ShippingOrderListComponent
+      import('./authentication/authentication.module').then(
+        (m) => m.AuthenticationModule
+      ),
   },
- 
-
   {
     path: 'exception',
     loadChildren: () =>
