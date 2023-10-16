@@ -7,7 +7,7 @@
     </div>
     <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <ng-container *ngFor="let item of menus">
-        <li *ngIf="item.subMenus" nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
+        <li *ngIf="item.subMenus && item.role == role" nz-submenu [nzTitle]="item.title" [nzIcon]="item.icon">
           <ul>
             <li *ngFor="let sub of item.subMenus" nz-menu-item>
               <a [routerLink]="sub.url">{{ sub.title }}</a>
@@ -35,7 +35,7 @@
             <span style="font-size: 16px" [routerLink]="'user-infomation'">
               <strong>abc</strong>
             </span>
-            <span [routerLink]="'login'">
+            <span (click)="showConfirm()">
               <span style="font-size: 16px; color: #007bc3" nz-icon nzType="logout" nzTheme="outline"></span>
               <span style="margin-left: 0.5em; font-size: 16px">Log out</span>
             </span>

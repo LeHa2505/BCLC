@@ -10,29 +10,36 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { NgChartsModule } from 'ng2-charts';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { IconsProviderModule } from '../../icons-provider.module';
+import { IconsProviderModule } from '../icons-provider.module';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LayoutUserComponent } from '../layout-user/layout-user.component';
-import { LoginComponent } from '../../authentication/login/login.component';
+import { LayoutUserComponent } from './layout-user/layout-user.component';
+import { LoginComponent } from '../authentication/login/login.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NewAgreementComponent } from './new-agreement/new-agreement.component';
-import { ManageAgreementsComponent } from './manage-agreements/manage-agreements.component';
-import { RequestLCComponent } from './request-lc/request-lc.component';
+import { NewAgreementComponent } from './user/new-agreement/new-agreement.component';
+import { RequestLCComponent } from './user/request-lc/request-lc.component';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { Option1Component } from './option1/option1.component';
-import { ManageTransactionsComponent } from './manage-transactions/manage-transactions.component';
+import { Option1Component } from './user/option1/option1.component';
+import { ManageTransactionsComponent } from './user/manage-transactions/manage-transactions.component';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { ListNewRequestComponent } from './user/manage-agreements/list-new-request/list-new-request.component';
+import { DetailAgreementComponent } from './user/manage-agreements/detail-agreement/detail-agreement.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { ListRequestLcComponent } from './bank/list-request-lc/list-request-lc.component';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 
 @NgModule({
-  declarations: [LoginComponent, LayoutUserComponent, NewAgreementComponent, ManageAgreementsComponent, RequestLCComponent, Option1Component, ManageTransactionsComponent],
+  declarations: [LoginComponent, LayoutUserComponent, NewAgreementComponent, RequestLCComponent, Option1Component, ManageTransactionsComponent, ListNewRequestComponent, DetailAgreementComponent, ListRequestLcComponent],
   imports: [
     NzUploadModule,
     NzRadioModule,
@@ -58,7 +65,11 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
     NzLayoutModule,
     ScrollingModule,
     NzCollapseModule,
-    
+    NzCheckboxModule,
+    NzSelectModule,
+    NzDatePickerModule,
+    NzModalModule,
+    NzMessageModule
   ],
 })
 export class PagesModule {}

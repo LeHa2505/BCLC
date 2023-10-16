@@ -4,6 +4,20 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <div class="items">
     <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="nickname"
+        nzRequired
+        nzTooltipTitle="What do you want other to call you"
+      >
+        <span>Username</span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
+        <input nz-input id="nickname" formControlName="nickname" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
         <input nz-input formControlName="email" id="email" />
@@ -34,17 +48,12 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label
-        [nzSm]="6"
-        [nzXs]="24"
-        nzFor="nickname"
-        nzRequired
-        nzTooltipTitle="What do you want other to call you"
-      >
-        <span>Username</span>
-      </nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
-        <input nz-input id="nickname" formControlName="nickname" />
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="role" nzRequired>Select role</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
+        <nz-radio-group formControlName="role" nzErrorTip="Please select your role!">
+          <label nz-radio nzValue="user">User</label>
+          <label nz-radio nzValue="bank">Bank</label>
+        </nz-radio-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item nz-row class="register-area">

@@ -12,7 +12,7 @@ const routes: Routes = [
       {
         path: '', // Đường dẫn trống để đảm bảo đây là trang mặc định của layout chung
         loadChildren: () =>
-          import('./pages/user/page.module').then((m) => m.PagesModule),
+          import('./pages/page.module').then((m) => m.PagesModule),
       },
       // Thêm các route con cho trang layout chung ở đây
     ],

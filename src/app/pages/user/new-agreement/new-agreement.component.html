@@ -1,13 +1,14 @@
-<h5 style="text-align: center;">Content</h5>
+<div class="content-main">
+    <h5 style="text-align: center;">Content</h5>
 
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="formAgreement">
+<form nz-form [formGroup]="validateNewAgreementForm" (ngSubmit)="submitForm()" class="formAgreement">
     <div nz-row [nzGutter]="24">
         <nz-form-item nz-col [nzSpan]="12" class="info">
             <nz-form-label nzFor="date">
                 <strong>Agreement commencement time (DD--MM--YYYY)</strong>
             </nz-form-label>
             <nz-form-control [nzSpan]="8">
-                <p>{{validateForm.get('date').value}}</p>
+                <p>{{validateNewAgreementForm.get('date').value}}</p>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -15,7 +16,7 @@
                 <strong>Agreement ID</strong>
             </nz-form-label>
             <nz-form-control [nzSpan]="8">
-                <p>{{validateForm.get('agreementID').value}}</p>
+                <p>{{validateNewAgreementForm.get('agreementID').value}}</p>
             </nz-form-control>
         </nz-form-item>
     </div>
@@ -25,7 +26,7 @@
                 <strong>Applicant</strong>
             </nz-form-label>
             <nz-form-control [nzSpan]="8">
-                <p>{{validateForm.get('applicant').value}}</p>
+                <p>{{validateNewAgreementForm.get('applicant').value}}</p>
             </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -33,7 +34,7 @@
                 <strong>Applicant legal name</strong>
             </nz-form-label>
             <nz-form-control [nzSpan]="8">
-                <p>{{validateForm.get('applicantLegalName').value}}</p>
+                <p>{{validateNewAgreementForm.get('applicantLegalName').value}}</p>
             </nz-form-control>
         </nz-form-item>
     </div>
@@ -44,7 +45,7 @@
             </nz-form-label>
             <nz-form-control nzErrorTip="Please input your beneficiary">
                 <input type="text" nz-input formControlName="beneficiary"
-                    placeholder="{{validateForm.get('beneficiary').value}}" />
+                    placeholder="Please input your beneficiary" />
             </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -52,7 +53,7 @@
                 <strong>Beneficiary legal name</strong>
             </nz-form-label>
             <nz-form-control>
-                <p>{{validateForm.get('beneficiaryLegalName').value}}</p>
+                <p>{{validateNewAgreementForm.get('beneficiaryLegalName').value}}</p>
             </nz-form-control>
         </nz-form-item>
     </div>
@@ -63,7 +64,7 @@
             </nz-form-label>
             <nz-form-control nzErrorTip="Please input your Issuing bank">
                 <input type="text" nz-input formControlName="issuingBank"
-                    placeholder="{{validateForm.get('issuingBank').value}}" />
+                    placeholder="Please input your Issuing bank" />
             </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -71,7 +72,7 @@
                 <strong>Issuing Bank SWIFT/BIC code</strong>
             </nz-form-label>
             <nz-form-control>
-                <p>{{validateForm.get('issuingBankCode').value}}</p>
+                <p>{{validateNewAgreementForm.get('issuingBankCode').value}}</p>
             </nz-form-control>
         </nz-form-item>
     </div>
@@ -82,7 +83,7 @@
             </nz-form-label>
             <nz-form-control nzErrorTip="Please input your commodity name">
                 <input type="text" nz-input formControlName="commodityName"
-                    placeholder="{{validateForm.get('commodityName').value}}" />
+                    placeholder="Please input your commodity name" />
             </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -91,7 +92,7 @@
             </nz-form-label>
             <nz-form-control nzErrorTip="Please input your commodity value">
                 <input type="text" nz-input formControlName="commodityValue"
-                    placeholder="{{validateForm.get('commodityValue').value}}" />
+                    placeholder="Please input your commodity value" />
             </nz-form-control>
         </nz-form-item>
     </div>
@@ -139,9 +140,10 @@
         </nz-form-item>
     </div>
 
-    <nz-form-item style="margin: 60px 0 0 0;">
+    <nz-form-item style="margin: 60px 0 0 0; display: flex; justify-content: center; ">
         <nz-form-control [nzSpan]="8" [nzOffset]="4">
-            <button nz-button nzType="primary">Check</button>
+            <button nz-button nzType="primary">Send to seller</button>
         </nz-form-control>
     </nz-form-item>
 </form>
+</div>

@@ -10,6 +10,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { ComponentsModule } from '../shared/components/components.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     AuthenticationRoutingModule,
     NzDividerModule,
     NzFormModule,
-    NzInputModule
+    NzInputModule,
+    NzCheckboxModule,
+    NzRadioModule
   ]
 })
 export class AuthenticationModule { }

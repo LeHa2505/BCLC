@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 
 @Component({
   selector: 'app-layout-user',
@@ -7,7 +9,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./layout-user.component.less'],
 })
 export class LayoutUserComponent implements OnInit {
-  role: any = 'user';
+  role: any = JSON.parse(localStorage.getItem('user')).role;
   isCollapsed = false;
   menus: any[] = [
     {
@@ -17,15 +19,24 @@ export class LayoutUserComponent implements OnInit {
       role: 'user',
     },
     {
-      title: 'Manage agreements',
-      icon: 'database',
-      url: 'manage-agreements',
-      role: 'user',
-    },
-    {
       title: 'Request LC',
       icon: 'audit',
       url: 'request-lc',
+      role: 'user',
+    },
+    {
+      title: 'Manage agreements',
+      icon: 'database',
+      subMenus: [
+        {
+          title: 'New request list',
+          url: 'agreements/list-new-request',
+        },
+        {
+          title: 'option2',
+          url: `#`,
+        },
+      ],
       role: 'user',
     },
     {
@@ -49,12 +60,20 @@ export class LayoutUserComponent implements OnInit {
       url: 'manage-transactions',
       role: 'user',
     },
+    {
+      title: 'New Request LC',
+      icon: 'diff',
+      url: 'bank/list-request-lc',
+      role: 'bank',
+    },
   ];
 
   breadcrumbs: string[] = [];
   url: string;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, 
+    private modal: NzModalService,
+    private authenSer: AuthenticationService) {
     // Theo dõi sự kiện thay đổi URL
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -96,5 +115,15 @@ export class LayoutUserComponent implements OnInit {
   getMenuUrl(title: string): string {
     const menuItem = this.menus.find((item) => item.title === title);
     return menuItem ? menuItem.url : title;
+  }
+
+  showConfirm(): void {
+    this.modal.confirm({
+      nzTitle: '<i>Do you Want to log out?</i>',
+      nzOnOk: () => { 
+        this.authenSer.logout() 
+        this.router.navigate(['/auth/login']);
+      }
+    });
   }
 }

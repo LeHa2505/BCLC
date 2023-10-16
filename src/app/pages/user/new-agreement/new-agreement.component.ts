@@ -1,44 +1,73 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { format } from 'date-fns';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
-
-
+import { AgreementService } from 'src/app/service/agreement-service/agreement.service';
 
 @Component({
   selector: 'app-new-agreement',
   templateUrl: './new-agreement.component.html',
-  styleUrls: ['./new-agreement.component.less']
+  styleUrls: ['./new-agreement.component.less'],
 })
 export class NewAgreementComponent implements OnInit {
-  validateForm!: UntypedFormGroup;
+  validateNewAgreementForm!: UntypedFormGroup;
+  newAgreement = {
+    importer: 'HUST',
+    exporter: 'An Phat Computer',
+    issuingBank: 'MB Bank',
+    advisingBank: 'TP Bank',
+    commodity: 'pc',
+    price: '10000000 VND',
+    paymentMethod: 'cash',
+    additionalInfo: 'need Invoice',
+    deadline: '12/10/2023',
+  };
+
+  constructor(
+    private fb: UntypedFormBuilder,
+    private msg: NzMessageService,
+    private agreementSer: AgreementService
+  ) {}
 
   submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
-    } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
+    if (this.validateNewAgreementForm.valid) {
+      console.log('submit', this.validateNewAgreementForm.value);
+      // this.newAgreement = { ...this.validateNewAgreementForm.value };
+      this.agreementSer.create(this.newAgreement).subscribe((res) => {
+        console.log("abcccc");
+        
+        console.log(res);
       });
+    } else {
+      Object.values(this.validateNewAgreementForm.controls).forEach(
+        (control) => {
+          if (control.invalid) {
+            control.markAsDirty();
+            control.updateValueAndValidity({ onlySelf: true });
+          }
+        }
+      );
     }
   }
 
   requiredChange(required: boolean): void {
     if (!required) {
-      this.validateForm.get('nickname')!.clearValidators();
-      this.validateForm.get('nickname')!.markAsPristine();
+      this.validateNewAgreementForm.get('nickname')!.clearValidators();
+      this.validateNewAgreementForm.get('nickname')!.markAsPristine();
     } else {
-      this.validateForm.get('nickname')!.setValidators(Validators.required);
-      this.validateForm.get('nickname')!.markAsDirty();
+      this.validateNewAgreementForm
+        .get('nickname')!
+        .setValidators(Validators.required);
+      this.validateNewAgreementForm.get('nickname')!.markAsDirty();
     }
-    this.validateForm.get('nickname')!.updateValueAndValidity();
+    this.validateNewAgreementForm.get('nickname')!.updateValueAndValidity();
   }
 
-  constructor(private fb: UntypedFormBuilder, private msg: NzMessageService) {}
   handleChange(info: NzUploadChangeParam): void {
     if (info.file.status !== 'uploading') {
       console.log(info.file, info.fileList);
@@ -52,22 +81,22 @@ export class NewAgreementComponent implements OnInit {
 
   ngOnInit(): void {
     const currentDate = new Date();
-    this.validateForm = this.fb.group({
-      name: [null, [Validators.required]],
-      agreementID: ['123456'],
-      applicant: ['Demo Corporation'],
-      applicantLegalName: ['Demo Corporation'],
-      beneficiary: ['Beneficiary', [Validators.required]],
-      issuingBank: ['Issuing bank', [Validators.required]],
-      issuingBankCode: ['BIC--Issuing Bank Corp'],
-      beneficiaryLegalName: ['Beneficiary'],
-      commodityName: ['example', [Validators.required]],
-      commodityValue: ['1200000', [Validators.required]],
-      paymentMethod: ['Digital money', [Validators.required]],
-      additionalInformation: [null],
+    this.validateNewAgreementForm = this.fb.group({
+      name: ['abc', [Validators.required]],
+      agreementID: 'sdsd',
+      applicant: 'abc',
+      applicantLegalName: 'abc',
+      beneficiary: ['s', [Validators.required]],
+      issuingBank: ['s', [Validators.required]],
+      issuingBankCode: 'abc',
+      beneficiaryLegalName: 'abc',
+      commodityName: ['s', [Validators.required]],
+      commodityValue: [0, [Validators.required]],
+      paymentMethod: ['s', [Validators.required]],
+      additionalInformation: '',
       date: [format(currentDate, 'dd-MM-yyyy')],
-      nickname: [null],
-      required: [false]
+      nickname: 'abc',
+      required: false,
     });
   }
 }
