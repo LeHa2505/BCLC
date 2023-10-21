@@ -1,37 +1,77 @@
-import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { format } from 'date-fns';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
+import { AgreementService } from 'src/app/service/agreement-service/agreement.service';
+import { LcService } from 'src/app/service/lc-service/lc.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-request-lc',
   templateUrl: './request-lc.component.html',
-  styleUrls: ['./request-lc.component.less']
+  styleUrls: ['./request-lc.component.less'],
 })
 export class RequestLCComponent {
   validateRequestLCForm!: UntypedFormGroup;
-  bankList = ["Any Bank", "ABC Bank", "ADE Bank"];
+  bankList = ['Any Bank', 'ABC Bank', 'ADE Bank'];
   availableByList = [
     { label: 'Payment at sight', value: 'Payment at sight', checked: true },
     { label: 'Deferred payment', value: 'Deferred payment' },
     { label: 'Acceptance', value: 'Acceptance' },
-    { label: 'Negotiation', value: 'Negotiation' }
+    { label: 'Negotiation', value: 'Negotiation' },
   ];
-  formOfDocumentCreditList = ['IRREVOCABLE', 'REVOCABLE', 'CONFIRM', 'UNCONFIRM', 'TRANSFERABLE', 'BACK TO BACK'];
+  formOfDocumentCreditList = [
+    'IRREVOCABLE',
+    'REVOCABLE',
+    'CONFIRM',
+    'UNCONFIRM',
+    'TRANSFERABLE',
+    'BACK TO BACK',
+  ];
   applicableRules = ['eUCP', 'UCP'];
   currencyUnitList = ['VND', 'USD'];
   isEnglish = false;
   shipmentTranshipment = ['Allowed', 'Not allowed'];
   shipmentDateChoice = ['Latest date of shipment', 'Shipment period'];
   typeDocuments = ['Transport Document'];
+  salescontract_id: string;
+
+  constructor(
+    private fb: UntypedFormBuilder,
+    private msg: NzMessageService,
+    private el: ElementRef,
+    private route: ActivatedRoute,
+    private agreementSer: AgreementService,
+    private lcSer: LcService
+  ) {}
+
+  getContractDetail() {
+    this.salescontract_id = this.route.snapshot.paramMap.get('id');
+    this.agreementSer.detail(this.salescontract_id).subscribe((res) => {
+      console.log(res);
+      
+    })
+  }
+
+  scrollToTarget(position: String) {    
+    const targetElement =
+      this.el.nativeElement.querySelector('#' + position);
+    if (targetElement) {      
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   submitForm(): void {
     if (this.validateRequestLCForm.valid) {
       console.log('submit', this.validateRequestLCForm.value);
     } else {
-      Object.values(this.validateRequestLCForm.controls).forEach(control => {
+      Object.values(this.validateRequestLCForm.controls).forEach((control) => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
@@ -45,13 +85,14 @@ export class RequestLCComponent {
       this.validateRequestLCForm.get('nickname')!.clearValidators();
       this.validateRequestLCForm.get('nickname')!.markAsPristine();
     } else {
-      this.validateRequestLCForm.get('nickname')!.setValidators(Validators.required);
+      this.validateRequestLCForm
+        .get('nickname')!
+        .setValidators(Validators.required);
       this.validateRequestLCForm.get('nickname')!.markAsDirty();
     }
     this.validateRequestLCForm.get('nickname')!.updateValueAndValidity();
   }
 
-  constructor(private fb: UntypedFormBuilder, private msg: NzMessageService,private i18n: NzI18nService) {}
   handleChange(info: NzUploadChangeParam): void {
     if (info.file.status !== 'uploading') {
       console.log(info.file, info.fileList);
@@ -91,7 +132,7 @@ export class RequestLCComponent {
       advisingBankCode: 'BIC--Advising Bank Corp',
       advisingBankAddress: 'Advising Bank address',
 
-      creditAvaiIableBanks:[this.bankList[0]],
+      creditAvaiIableBanks: [this.bankList[0]],
       availableByList: [this.availableByList, [Validators.required]],
       paymentConditions: '',
 
@@ -115,10 +156,9 @@ export class RequestLCComponent {
       paymentMethod: ['Digital money', [Validators.required]],
       additionalInformation: null,
       nickname: null,
-      required: false
+      required: false,
     });
-    
+
     console.log(this.validateRequestLCForm);
-    
   }
 }

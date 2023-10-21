@@ -9,7 +9,7 @@ import { AuthenticationService } from 'src/app/service/authentication/authentica
   styleUrls: ['./layout-user.component.less'],
 })
 export class LayoutUserComponent implements OnInit {
-  role: any = JSON.parse(localStorage.getItem('user')).role;
+  role: any = localStorage.getItem('role');
   isCollapsed = false;
   menus: any[] = [
     {
@@ -19,22 +19,27 @@ export class LayoutUserComponent implements OnInit {
       role: 'user',
     },
     {
-      title: 'Request LC',
-      icon: 'audit',
-      url: 'request-lc',
-      role: 'user',
-    },
-    {
       title: 'Manage agreements',
       icon: 'database',
       subMenus: [
+        // {
+        //   title: 'New request list',
+        //   url: 'agreements/list-new-request',
+        // },
         {
-          title: 'New request list',
-          url: 'agreements/list-new-request',
+          title: 'Agreements list',
+          url: 'agreements',
         },
+      ],
+      role: 'user',
+    },
+    {
+      title: 'Manage LCs',
+      icon: 'audit',
+      subMenus: [
         {
-          title: 'option2',
-          url: `#`,
+          title: 'LCs list',
+          url: 'LCs',
         },
       ],
       role: 'user',
@@ -61,9 +66,14 @@ export class LayoutUserComponent implements OnInit {
       role: 'user',
     },
     {
-      title: 'New Request LC',
-      icon: 'diff',
-      url: 'bank/list-request-lc',
+      title: 'Manage LCs',
+      icon: 'audit',
+      subMenus: [
+        {
+          title: 'LCs list',
+          url: 'bank/LCs',
+        },
+      ],
       role: 'bank',
     },
   ];
@@ -71,9 +81,12 @@ export class LayoutUserComponent implements OnInit {
   breadcrumbs: string[] = [];
   url: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private modal: NzModalService,
-    private authenSer: AuthenticationService) {
+    private authenSer: AuthenticationService
+  ) {
     // Theo dõi sự kiện thay đổi URL
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -120,10 +133,10 @@ export class LayoutUserComponent implements OnInit {
   showConfirm(): void {
     this.modal.confirm({
       nzTitle: '<i>Do you Want to log out?</i>',
-      nzOnOk: () => { 
-        this.authenSer.logout() 
+      nzOnOk: () => {
+        this.authenSer.logout();
         this.router.navigate(['/auth/login']);
-      }
+      },
     });
   }
 }

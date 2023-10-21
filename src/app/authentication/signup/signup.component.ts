@@ -47,7 +47,7 @@ export class SignupComponent implements OnInit {
       this.registerService
         .register(this.requestRegisterForm)
         .subscribe((res) => {
-          if (res.message.msgError == false) {
+          if (res.message == 'Register successfully') {
             this.mess.success('Register successfully!');
             this.router.navigate(['/auth/login']);
           } else this.mess.error('Register unsuccessfully!');

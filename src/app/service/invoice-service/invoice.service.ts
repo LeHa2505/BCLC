@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class AgreementService {
+export class InvoiceService {
   private httpOptions = {
     headers: new HttpHeaders({
       // 'Content-Type': 'application/json; charset=utf-8',
@@ -18,46 +18,31 @@ export class AgreementService {
 
   create(body: any): Observable<any> {
     return this.http.post(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + '/create',
+      environment.BASE_API_URI.BASE_INVOICE_API + `/create`,
       body,
-      this.httpOptions
-    );
-  }
-
-  list(): Observable<any> {
-    return this.http.get(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API,
       this.httpOptions
     );
   }
 
   detail(id: String): Observable<any> {
-    return this.http.get(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + `/${id}`,
-      this.httpOptions
-    );
+    return this.http.get(environment.BASE_API_URI.BASE_INVOICE_API + `/${id}`);
   }
 
-  approve(id: String): Observable<any> {
+  approve(id: String, body: any): Observable<any> {
     return this.http.patch(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + `/${id}/approve`,
-      null,
-      this.httpOptions
-    );
-  }
-
-  update(body: any, id: String): Observable<any> {
-    return this.http.patch(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + `/${id}`,
+      environment.BASE_API_URI.BASE_INVOICE_API + `/${id}/approve`,
       body,
       this.httpOptions
     );
   }
 
-  delete(id: String): Observable<any> {
-    return this.http.delete(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + `/${id}`,
+  reject(id: String, body: any): Observable<any> {
+    return this.http.patch(
+      environment.BASE_API_URI.BASE_INVOICE_API + `/${id}/reject`,
+      body,
       this.httpOptions
     );
   }
+
+  
 }

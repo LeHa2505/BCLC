@@ -17,33 +17,41 @@ import { AgreementService } from 'src/app/service/agreement-service/agreement.se
 export class NewAgreementComponent implements OnInit {
   validateNewAgreementForm!: UntypedFormGroup;
   newAgreement = {
-    importer: 'HUST',
-    exporter: 'An Phat Computer',
-    issuingBank: 'MB Bank',
-    advisingBank: 'TP Bank',
-    commodity: 'pc',
-    price: '10000000 VND',
-    paymentMethod: 'cash',
-    additionalInfo: 'need Invoice',
-    deadline: '12/10/2023',
+    importer: String,
+    exporter: String,
+    issuingBank: String,
+    advisingBank: String,
+    commodity: String,
+    price: Number,
+    paymentMethod: String,
+    additionalInfo: String,
+    deadline: '12/12/2023',
   };
 
   constructor(
     private fb: UntypedFormBuilder,
     private msg: NzMessageService,
-    private agreementSer: AgreementService
+    private agreementSer: AgreementService,
   ) {}
 
   submitForm(): void {
     if (this.validateNewAgreementForm.valid) {
-      console.log('submit', this.validateNewAgreementForm.value);
-      // this.newAgreement = { ...this.validateNewAgreementForm.value };
+      this.newAgreement.importer = this.validateNewAgreementForm.value.applicant;
+      this.newAgreement.exporter = this.validateNewAgreementForm.value.beneficiary;
+      this.newAgreement.issuingBank = this.validateNewAgreementForm.value.issuingBank;
+      this.newAgreement.advisingBank = this.validateNewAgreementForm.value.advisingBank;
+      this.newAgreement.commodity = this.validateNewAgreementForm.value.commodityName;
+      this.newAgreement.price = this.validateNewAgreementForm.value.commodityValue;
+      this.newAgreement.paymentMethod = this.validateNewAgreementForm.value.paymentMethod;
+      // this.newAgreement.deadline = this.validateNewAgreementForm.value.date.toString();
+      this.newAgreement.additionalInfo = this.validateNewAgreementForm.value.additionalInformation;
+      console.log(this.newAgreement);
       this.agreementSer.create(this.newAgreement).subscribe((res) => {
-        console.log("abcccc");
-        
-        console.log(res);
+        if (res.message == 'Create salescontract successfully') {
+          this.msg.success('Create salescontract successfully');
+        } else this.msg.error('Create salescontract unsuccessfully')
       });
-    } else {
+    } else {      
       Object.values(this.validateNewAgreementForm.controls).forEach(
         (control) => {
           if (control.invalid) {
@@ -82,20 +90,20 @@ export class NewAgreementComponent implements OnInit {
   ngOnInit(): void {
     const currentDate = new Date();
     this.validateNewAgreementForm = this.fb.group({
-      name: ['abc', [Validators.required]],
-      agreementID: 'sdsd',
-      applicant: 'abc',
-      applicantLegalName: 'abc',
-      beneficiary: ['s', [Validators.required]],
-      issuingBank: ['s', [Validators.required]],
-      issuingBankCode: 'abc',
-      beneficiaryLegalName: 'abc',
-      commodityName: ['s', [Validators.required]],
+      agreementID: '#demo',
+      applicant: 'dang',
+      applicantLegalName: 'dang',
+      beneficiary: ['', [Validators.required]],
+      issuingBank: ['', [Validators.required]],
+      issuingBankCode: '',
+      beneficiaryLegalName: '',
+      advisingBank: ['', [Validators.required]],
+      advisingBankCode: '',
+      commodityName: ['', [Validators.required]],
       commodityValue: [0, [Validators.required]],
-      paymentMethod: ['s', [Validators.required]],
+      paymentMethod: ['', [Validators.required]],
       additionalInformation: '',
       date: [format(currentDate, 'dd-MM-yyyy')],
-      nickname: 'abc',
       required: false,
     });
   }

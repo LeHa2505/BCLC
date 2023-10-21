@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class AgreementService {
+export class LcService {
   private httpOptions = {
     headers: new HttpHeaders({
       // 'Content-Type': 'application/json; charset=utf-8',
@@ -16,9 +16,10 @@ export class AgreementService {
 
   constructor(private http: HttpClient) {}
 
-  create(body: any): Observable<any> {
+  create(salescontract_id: String, body: any): Observable<any> {
     return this.http.post(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + '/create',
+      environment.BASE_API_URI.BASE_LETTER_OF_CREDIT_API +
+        `/${salescontract_id}`,
       body,
       this.httpOptions
     );
@@ -26,37 +27,30 @@ export class AgreementService {
 
   list(): Observable<any> {
     return this.http.get(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API,
+      environment.BASE_API_URI.BASE_SERVICE_API + `/bank/letterofcredits`,
       this.httpOptions
     );
   }
 
   detail(id: String): Observable<any> {
     return this.http.get(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + `/${id}`,
+      environment.BASE_API_URI.BASE_LETTER_OF_CREDIT_API + `/${id}`,
       this.httpOptions
     );
   }
 
-  approve(id: String): Observable<any> {
+  update(id: String, body: any): Observable<any> {
     return this.http.patch(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + `/${id}/approve`,
-      null,
-      this.httpOptions
-    );
-  }
-
-  update(body: any, id: String): Observable<any> {
-    return this.http.patch(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + `/${id}`,
+      environment.BASE_API_URI.BASE_LETTER_OF_CREDIT_API + `${id}`,
       body,
       this.httpOptions
     );
   }
 
-  delete(id: String): Observable<any> {
-    return this.http.delete(
-      environment.BASE_API_URI.BASE_SALE_CONTRACT_API + `/${id}`,
+  approve(id: String, body: any): Observable<any> {
+    return this.http.patch(
+      environment.BASE_API_URI.BASE_LETTER_OF_CREDIT_API + `/${id}/approve`,
+      body,
       this.httpOptions
     );
   }

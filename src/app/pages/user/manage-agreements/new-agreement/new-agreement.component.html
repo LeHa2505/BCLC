@@ -78,6 +78,25 @@
     </div>
     <div nz-row [nzGutter]="24">
         <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzRequired nzFor="advisingBank">
+                <strong>Advising bank</strong>
+            </nz-form-label>
+            <nz-form-control nzErrorTip="Please input your Advising bank">
+                <input type="text" nz-input formControlName="advisingBank"
+                    placeholder="Please input your Advising bank" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col [nzSpan]="12" class="info">
+            <nz-form-label nzFor="advisingBankCode">
+                <strong>Advising Bank SWIFT/BIC code</strong>
+            </nz-form-label>
+            <nz-form-control>
+                <p>{{validateNewAgreementForm.get('advisingBankCode').value}}</p>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div nz-row [nzGutter]="24">
+        <nz-form-item nz-col [nzSpan]="12" class="info">
             <nz-form-label nzRequired nzFor="commodityName">
                 <strong>Commodity name</strong>
             </nz-form-label>
@@ -139,7 +158,6 @@
             </nz-upload>
         </nz-form-item>
     </div>
-
     <nz-form-item style="margin: 60px 0 0 0; display: flex; justify-content: center; ">
         <nz-form-control [nzSpan]="8" [nzOffset]="4">
             <button nz-button nzType="primary">Send to seller</button>

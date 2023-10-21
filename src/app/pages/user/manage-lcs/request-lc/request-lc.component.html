@@ -2,7 +2,7 @@
 <div nz-row [nzGutter]="24">
     <div nz-col [nzSpan]="18">
         <form nz-form [formGroup]="validateRequestLCForm" (ngSubmit)="submitForm()" class="formAgreement">
-            <nz-card nzTitle="Applicant" style="margin-bottom: 16px;">
+            <nz-card nzTitle="Applicant" style="margin-bottom: 16px;" name="applicantPart">
                 <div style="padding: 0 24px;">
                     <div nz-row [nzGutter]="24">
                         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -56,7 +56,7 @@
                 </div>
             </nz-card>
 
-            <nz-card nzTitle="Beneficiary" style="margin-bottom: 16px;">
+            <nz-card nzTitle="Beneficiary" style="margin-bottom: 16px;" id="beneficiaryPart">
                 <div style="padding: 0 24px;">
                     <div nz-row [nzGutter]="24">
                         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -110,7 +110,7 @@
                 </div>
             </nz-card>
 
-            <nz-card nzTitle="Banks" style="margin-bottom: 16px;">
+            <nz-card nzTitle="Banks" style="margin-bottom: 16px;" id="banksPart">
                 <div style="padding: 0 24px;">
                     <div nz-row [nzGutter]="24">
                         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -264,7 +264,7 @@
                 </div>
             </nz-card>
 
-            <nz-card nzTitle="Key terms" style="margin-bottom: 16px;">
+            <nz-card nzTitle="Key terms" style="margin-bottom: 16px;" id="keyItemsPart">
                 <div style="padding: 0 24px;">
                     <div nz-row [nzGutter]="24">
                         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -365,7 +365,7 @@
                 </div>
             </nz-card>
 
-            <nz-card nzTitle="Shipment details" style="margin-bottom: 16px;">
+            <nz-card nzTitle="Shipment details" style="margin-bottom: 16px;" id="shipmentPart">
                 <div style="padding: 0 24px;">
                     <div nz-row [nzGutter]="24">
                         <nz-form-item nz-col [nzSpan]="12" class="info">
@@ -419,7 +419,7 @@
                 </div>
             </nz-card>
 
-            <nz-card nzTitle="Document details" style="margin-bottom: 16px;">
+            <nz-card nzTitle="Document details" style="margin-bottom: 16px;" id="documentPart">
                 <nz-divider nzText="Document required" [nzPlain]="false" nzOrientation="left"></nz-divider>
                 <div style="padding: 0 24px;">
                     <div>
@@ -530,7 +530,7 @@
                 </div>
             </nz-card>
 
-            <nz-card nzTitle="Document details" style="margin-bottom: 16px;">
+            <nz-card nzTitle="Leave message (optional)" style="margin-bottom: 16px;" id="messagePart">
                 <div nz-row [nzGutter]="24">
                     <div style="padding: 0 24px;">
                         <nz-form-item nz-col [nzSpan]="24" class="info">
@@ -550,13 +550,20 @@
 
     <div nz-col [nzSpan]="6">
         <nz-card style="width:100%;" nzTitle="Content">
-            <p>Applicant</p>
-            <p>Beneficiary</p>
-            <p>Banks</p>
-            <p>Key items</p>
-            <p>Shipment details</p>
-            <p>Document details</p>
-            <p>Leave message (optional)</p>
+            <ul nz-menu nzMode="inline">
+                <li nz-menu-item (click)="scrollToTarget('applicantPart')" nzOpen><span>Applicant</span></li>
+                <li nz-menu-item (click)="scrollToTarget('beneficiaryPart')"><span>Beneficiary</span></li>
+                <li nz-menu-item (click)="scrollToTarget('banksPart')"><span>Banks</span></li>
+                <li nz-menu-item (click)="scrollToTarget('keyItemsPart')"><span>Key items</span></li>
+                <li nz-menu-item (click)="scrollToTarget('shipmentPart')"><span>Shipment details</span></li>
+                <li nz-menu-item (click)="scrollToTarget('documentPart')"><span>Document details</span></li>
+                <li nz-menu-item (click)="scrollToTarget('messagePart')"><span>Leave message (optional)</span></li>
+            </ul>
+            <nz-form-item>
+                <nz-form-control>
+                    <button nz-button nzType="primary" style="width: 100%;">Send to Issuing Bank</button>
+                </nz-form-control>
+            </nz-form-item>
         </nz-card>
     </div>
 </div>

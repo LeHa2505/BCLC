@@ -21,8 +21,8 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NewAgreementComponent } from './user/new-agreement/new-agreement.component';
-import { RequestLCComponent } from './user/request-lc/request-lc.component';
+import { NewAgreementComponent } from './user/manage-agreements/new-agreement/new-agreement.component';
+import { RequestLCComponent } from './user/manage-lcs/request-lc/request-lc.component';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { Option1Component } from './user/option1/option1.component';
 import { ManageTransactionsComponent } from './user/manage-transactions/manage-transactions.component';
@@ -34,12 +34,14 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { ListNewRequestComponent } from './user/manage-agreements/list-new-request/list-new-request.component';
 import { DetailAgreementComponent } from './user/manage-agreements/detail-agreement/detail-agreement.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { ListRequestLcComponent } from './bank/list-request-lc/list-request-lc.component';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { ListAgreementComponent } from './user/manage-agreements/list-agreement/list-agreement.component';
+import { ListLCsComponent } from './user/manage-lcs/list-lcs/list-lcs.component';
+import { ListLcComponent } from './bank/manage-lcs/list-lc/list-lc.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, LayoutUserComponent, NewAgreementComponent, RequestLCComponent, Option1Component, ManageTransactionsComponent, ListNewRequestComponent, DetailAgreementComponent, ListRequestLcComponent],
+  declarations: [LoginComponent, LayoutUserComponent, NewAgreementComponent, RequestLCComponent, Option1Component, ManageTransactionsComponent, ListNewRequestComponent, DetailAgreementComponent, ListAgreementComponent, ListLCsComponent, ListLcComponent],
   imports: [
     NzUploadModule,
     NzRadioModule,

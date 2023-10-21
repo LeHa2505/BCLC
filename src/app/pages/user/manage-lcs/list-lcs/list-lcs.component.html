@@ -1,0 +1,50 @@
+<div class="data-table">
+    <div class="content-main">
+      <h5 style="text-align: center;">List LCs</h5>
+    </div>
+  
+    <nz-table #basicTable [nzData]="listOfData">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Importer</th>
+          <th>Issuing Bank</th>
+          <th>Advising Bank</th>
+          <th>Commodity</th>
+          <th>Price</th>
+          <th>Payment method</th>
+          <th>Note</th>
+          <th>Status</th>
+          <th>Request LC</th>
+          <th>Detail</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ data.importer }}</td>
+          <td>{{ data.issuingBank }}</td>
+          <td>{{ data.advisingBank }}</td>
+          <td>{{ data.commodity }}</td>
+          <td>{{ data.price }}</td>
+          <td>{{ data.paymentMethod }}</td>
+          <td>{{ data.additionalInfo }}</td>
+          <td>{{ data.status }}</td>
+          <td>
+            <a [routerLink]="'/request-lc'">
+              <span nz-icon style="color: #2F54EB;" nzType="file-add" nzTheme="outline"></span>
+            </a>
+          </td>
+          <td>
+            <a><span style="color: #2F54EB;" nz-icon nzType="eye" nzTheme="outline"
+                [routerLink]="['/agreements', data.salescontract_id]"></span></a>
+          </td>
+          <td>
+            <span *ngIf="username == data.importer" style="color: #ff4d4f; cursor: pointer;"
+              (click)="showDeleteConfirm(data.salescontract_id)" nz-icon nzType="delete" nzTheme="outline"></span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>

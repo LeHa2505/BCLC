@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AgreementService } from 'src/app/service/agreement-service/agreement.service';
 
 @Component({
   selector: 'app-list-new-request',
@@ -7,36 +8,26 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./list-new-request.component.less']
 })
 export class ListNewRequestComponent {
-  listOfData = [
-    {
-      id: 1,
-      commodity: '1',
-      value: 'John Brown',
-      applicant: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      id: 2,
-      commodity: '1',
-      value: 'John Brown',
-      applicant: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-    {
-      id: 3,
-      commodity: '1',
-      value: 'John Brown',
-      applicant: 32,
-      address: 'New York No. 1 Lake Park'
-    },
-  ];
+  listOfData = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private agreementSer: AgreementService) {}
 
   detail(id: number) {
     this.route.params.subscribe(params => {
       const id = params['id'];
-      // Bây giờ bạn có thể sử dụng biến 'id' trong component của bạn.
     });
+  }
+
+  getList() {
+    this.agreementSer.list().subscribe((res) => {
+      console.log(res);
+      this.listOfData = res;
+    })
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.getList();
   }
 }

@@ -21,6 +21,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 registerLocaleData(vi);
@@ -42,7 +43,8 @@ registerLocaleData(vi);
     NzButtonModule,
     NzTableModule,
     NzMessageModule,
-    NzModalModule
+    NzModalModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: vi_VN }],
   bootstrap: [AppComponent],
